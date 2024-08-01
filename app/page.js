@@ -9,6 +9,8 @@ export default function Home() {
       display = {'flex'}
       justifyContent={'center'}
       alignItems={'center'}
-    >Hello World</Box>
+    >
+      Hello World
+    </Box>
   );
 }

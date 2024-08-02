@@ -15,8 +15,6 @@ export default function Home() {
       alignItems={'center'}
     >
       <Box border={'1px solid #ccc'}>
-
-      
       <Box 
       width ="800px"
       height="100px" 

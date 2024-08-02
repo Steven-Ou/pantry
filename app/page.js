@@ -1,3 +1,6 @@
+'use client'
+import Image from 'next/image'
+import {useState, useEffect} from 'react'
 import {Box,Stack, Typography} from "@mui/material";
 import { lightBlue } from "@mui/material/colors";
 

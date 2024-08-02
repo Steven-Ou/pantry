@@ -1,7 +1,7 @@
 'use client'
 import Image from 'next/image'
 import {useState, useEffect} from 'react'
-import {Box,Stack, Typography} from "@mui/material";
+import {Box, Typography} from "@mui/material";
 import {firestore} from '@/firebase'
 import { collection, getDocs, query } from 'firebase/firestore';
 
@@ -24,51 +24,54 @@ export default function Home() {
     })
     setInventory(inventoryList)
   }
+  const addItem = async (item) =>{
+    const docRef = doc(collection(firestore, 'inventory'), item)
+    const docSnap = await getDoc(docRef)
+    
+    if(docSnap.exists()){
+      const {quantity} = docSnap.data()
+  
+      await setDoc(docRef,{quantity:quantity -1})
+      }
+    }
+
+  }
+    const removeItem = async (item) =>{
+      const docRef = doc(collection(firestore, 'inventory'), item)
+      const docSnap = await getDoc(docRef)
+      
+      if(docSnap.exists()){
+        const {quantity} = docSnap.data()
+        if (quantity ==1){
+          await deleteDoc(docRef)
+        }else{
+          await setDoc(docRef,{quantity:quantity -1})
+        }
+      }
+
+    }
+   useEffect(() =>{
+    updateInventory()
+  } ,[])
+
+  
   return (
-   
-    <Box 
-      width="100vw" 
-      height="100vh"
-      display = {'flex'}
-      justifyContent={'center'}
-      flexDirection={'column'}
-      alignItems={'center'}
-    >
-      <Box border={'1px solid #ccc'}>
-      <Box 
-      width ="800px"
-      height="100px" 
-      bgcolor={'#ADD8E6'} 
-      display={'flex'} 
-      justifyContent={'center'} 
-      alignItems={'center'}
-      border={'1px solid #ccc'}>
+    <Box>
         <Typography variant={'h1'} color={'#333'} textAlign={'center'} >
-           Pantry Items
+           Inventory Management
         </Typography>
+        {inventory.forEach((item)=>{
+          return (
+            <Box>
+              {item.name}
+              {item.count}
+            </Box>
+          )
+          }
+
+          )
+        }
         
-      </Box>
-      <Stack width="800px" height="300px" spacing={2} overflow={'auto'}>
-        {item.map((i)=>(
-          <Box 
-            key={i}
-            width="100%"
-            height="300px"
-            display={'flex'}
-            justifyContent={'center'}
-            alignItems={'center'}
-            bgcolor={'#f0f0f0'}
-          >
-            <Typography variant={'h3'} color={'black'} textAlign={'center'} >
-              { 
-                // Capitalize the first letter of the item 
-                i.charAt(0).toUpperCase()+ i.slice(1)
-              }
-            </Typography>
-          </Box>
-        ))}
-      </Stack>
-      </Box>
-    </Box>
-  );
+    </Box> 
+  )
 }

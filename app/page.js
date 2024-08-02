@@ -14,7 +14,7 @@ export default function Home() {
       flexDirection={'column'}
       alignItems={'center'}
     >
-      <Box>
+      <Box border={'1px solid #ccc'}>
 
       
       <Box 

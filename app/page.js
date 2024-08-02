@@ -2,6 +2,7 @@
 import Image from 'next/image'
 import {useState, useEffect} from 'react'
 import {Box,Stack, Typography} from "@mui/material";
+import {firestore} from '@/firebase'
 import { lightBlue } from "@mui/material/colors";
 
 const item = [ 'tomato','potato','onion','garlic','carrot','lettuce','kale','cucumber']
@@ -26,7 +27,7 @@ export default function Home() {
       justifyContent={'center'} 
       alignItems={'center'}
       border={'1px solid #ccc'}>
-        <Typography variant={'h2'} color={'#333'} textAlign={'center'} >
+        <Typography variant={'h1'} color={'#333'} textAlign={'center'} >
            Pantry Items
         </Typography>
         

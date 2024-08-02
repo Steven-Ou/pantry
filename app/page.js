@@ -14,6 +14,9 @@ export default function Home() {
       flexDirection={'column'}
       alignItems={'center'}
     >
+      <Box>
+
+      
       <Box 
       width ="800px"
       height="100px" 
@@ -47,6 +50,7 @@ export default function Home() {
           </Box>
         ))}
       </Stack>
+      </Box>
     </Box>
   );
 }

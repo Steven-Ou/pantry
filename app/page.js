@@ -48,7 +48,7 @@ export default function Home() {
           await setDoc(docRef,{quantity:quantity -1})
         }
       }
-
+//left at 20.05
     }
    useEffect(() =>{
     updateInventory()

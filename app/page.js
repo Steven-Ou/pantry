@@ -70,13 +70,13 @@ export default function Home() {
       gap={2}
     >
         <Modal 
-        open = {handleOpen} 
+        open = {open} 
         onClose = {handleClose}
         >
           <Box 
             position="absolute" 
             top ="50%" 
-            left="50"  
+            left="50%"  
             width={400} 
             bgcolor="white" 
             border="2px solid #000" 
@@ -125,7 +125,7 @@ export default function Home() {
             Inventory Item
           </Typography>
         </Box>
-      </Box>
+      
       <Stack width ="300px" height="300px" spacing={2} overflow="auto">
         {
           inventory.map(({name,quantity})=>{
@@ -164,7 +164,8 @@ export default function Home() {
             </Box>
           })
         }
-      </Stack>
+        </Stack>
+      </Box>
     </Box> 
   )
 

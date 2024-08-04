@@ -117,10 +117,54 @@ export default function Home() {
           width="800px"
           height="100px"
           bgcolor="ADD8E6"
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
         >
-          
+          <Typography variant = 'h2' color="#333">
+            Inventory Item
+          </Typography>
         </Box>
       </Box>
+      <Stack width ="300px" height="300px" spacing={2} overflow="auto">
+        {
+          inventory.map(({name,quantity})=>{
+            <Box 
+            key={name} 
+            width="100%"
+            minHeight="150px"
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+            bgcolor="#f0f0f0"
+            padding={5}
+            >
+              <Typography 
+              variant='h3' 
+              color="#333" 
+              textAlign="center"
+              >
+                {name.charAt(0).toUpperCase() + name.slice(1)}
+              </Typography>
+              <Typography 
+              variant='h3' 
+              color="#333" 
+              textAlign="center"
+              >
+                {quantity}
+              </Typography>
+              <Button 
+              variant='contained'
+              onClick={()=>{
+                removeItem(name)
+              }}
+              >
+              Remove
+             </Button>
+            </Box>
+          })
+        }
+      </Stack>
     </Box> 
   )
 

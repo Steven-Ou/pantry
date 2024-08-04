@@ -64,17 +64,7 @@ export default function Home() {
         <Typography variant={'h1'} color={'#333'} textAlign={'center'} >
            Inventory Management
         </Typography>
-        {inventory.forEach((item)=>{
-          return (
-            <Box>
-              {item.name}
-              {item.count}
-            </Box>
-          )
-          }
-
-          )
-        }
+        
         
     </Box> 
   )

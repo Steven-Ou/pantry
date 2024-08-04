@@ -3,7 +3,7 @@ import Image from 'next/image'
 import {useState, useEffect} from 'react'
 import {Box, Typography} from "@mui/material";
 import {firestore} from '@/firebase'
-import { collection, getDocs, query } from 'firebase/firestore';
+import { collection, getDocs, query, setDoc } from 'firebase/firestore';
 
 const item = [ 'tomato','potato','onion','garlic','carrot','lettuce','kale','cucumber']
 
@@ -30,9 +30,11 @@ export default function Home() {
     
     if(docSnap.exists()){
       const {quantity} = docSnap.data()
-  
-      await setDoc(docRef,{quantity:quantity -1})
+      await setDoc(docRef,{quantity:quantity +1})
+      } else {
+        await setDoc(docRef,{quantity: 1})
       }
+      await updateInventory()
     }
 
   }
@@ -74,4 +76,4 @@ export default function Home() {
         
     </Box> 
   )
-}
+

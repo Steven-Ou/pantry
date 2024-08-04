@@ -9,7 +9,7 @@ import { collection, getDocs, query, setDoc } from 'firebase/firestore';
 
 export default function Home() {
   const [inventory, setInventory]= useState([])
-  const [open, setOpen]= useState([false])
+  const [open, setOpen]= useState(false)
   const [itemName, setItemName]= useState([''])
 
   const updateInventory = async() =>{
@@ -64,6 +64,7 @@ export default function Home() {
       width="100vw"
       height="100vh" 
       display="flex" 
+      flexDirection="column"
       justifyContent="center" 
       alignItems="center" 
       gap={2}
@@ -97,15 +98,29 @@ export default function Home() {
                      setItemName('')
                      handleClose()
                     }}>
-
+                      Add
                     </Button>
                   </TextField> 
               </Stack>
           </Box>
         </Modal>
-        <Typography variant="h1">
-           Inventory Management
-        </Typography>  
+      <Button
+        variant='contained'
+        onClick={()=>{
+          handleOpen()
+        }}
+      >
+        Add New Item
+      </Button>
+      <Box border="1px solid #333">
+        <Box 
+          width="800px"
+          height="100px"
+          bgcolor="ADD8E6"
+        >
+          
+        </Box>
+      </Box>
     </Box> 
   )
 

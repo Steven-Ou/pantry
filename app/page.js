@@ -148,9 +148,9 @@ export default function Home() {
             minHeight="150px"
             display="flex"
             alignItems="center"
-            justifyContent={"space-between"}
+            sx={{justifyContent:"space-between"}}
             bgcolor="#f0f0f0"
-            padding={5}
+            padding={10}
             >
               <Typography 
               variant='h3' 
@@ -169,7 +169,7 @@ export default function Home() {
               </Typography>
             <Stack direction="row" spacing={2}>
               <Button 
-              variant='contained'
+              variant="contained"
               onClick={()=>
                 addItem(name)
               }
@@ -177,7 +177,7 @@ export default function Home() {
               Add
              </Button>
               <Button 
-              variant='contained'
+              variant="contained"
               onClick={()=>
                 removeItem(name)
               }

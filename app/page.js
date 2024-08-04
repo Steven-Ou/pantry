@@ -3,14 +3,14 @@ import Image from 'next/image'
 import {useState, useEffect} from 'react'
 import {Box, Button, Modal, Stack, TextField, Typography} from "@mui/material";
 import {firestore} from '@/firebase'
-import { collection, getDocs, query, setDoc } from 'firebase/firestore';
+import { collection, deleteDoc, doc, getDocs, query, setDoc, getDoc } from 'firebase/firestore';
 
 //const item = [ 'tomato','potato','onion','garlic','carrot','lettuce','kale','cucumber']
 
 export default function Home() {
   const [inventory, setInventory]= useState([])
-  const [open, setOpen]= useState(false)
-  const [itemName, setItemName]= useState([''])
+  const [open, setOpen]= useState(true)
+  const [itemName, setItemName]= useState('')
 
   const updateInventory = async() =>{
     const snapshot =  query(collection(firestore,'inventory'))
@@ -81,7 +81,7 @@ export default function Home() {
             bgcolor="white" 
             border="2px solid #000" 
             boxShadow={24} 
-            padding={4} 
+            p={4}
             display="flex" 
             flexDirection="column" 
             gap={3} 
@@ -91,16 +91,22 @@ export default function Home() {
               <Stack width="100%" direction="row" spacing={2}>
                   <TextField 
                   variant='outlined' 
-                  fullWidth value={itemName} 
-                  onChange={(e) => {setItemName(e.target.value)}}>
-                    <Button variant='outlined' onClick={()=>
-                    {addItem(itemName)
-                     setItemName('')
+                  fullWidth 
+                  value={itemName} 
+                  onChange={(e) => {
+                    setItemName(e.target.value)
+                    }}
+                  ></TextField> 
+                    <Button 
+                    variant="outlined"
+                     onClick={()=>{ 
+                     addItem(itemName)
+                     setItemName("")
                      handleClose()
                     }}>
-                      Add
+                   Add
                     </Button>
-                  </TextField> 
+                  
               </Stack>
           </Box>
         </Modal>
@@ -112,7 +118,9 @@ export default function Home() {
       >
         Add New Item
       </Button>
-      <Box border="1px solid #333">
+      <Box 
+      border="1px solid #333"
+      >
         <Box 
           width="800px"
           height="100px"
@@ -126,16 +134,21 @@ export default function Home() {
           </Typography>
         </Box>
       
-      <Stack width ="300px" height="300px" spacing={2} overflow="auto">
+      <Stack 
+      width ="300px" 
+      height="300px" 
+      spacing={2} 
+      overflow="auto"
+      >
         {
-          inventory.map(({name,quantity})=>{
+          inventory.map(({name,quantity})=>(
             <Box 
             key={name} 
             width="100%"
             minHeight="150px"
             display="flex"
             alignItems="center"
-            justifyContent="center"
+            justifyContent={"space-between"}
             bgcolor="#f0f0f0"
             padding={5}
             >
@@ -146,6 +159,7 @@ export default function Home() {
               >
                 {name.charAt(0).toUpperCase() + name.slice(1)}
               </Typography>
+
               <Typography 
               variant='h3' 
               color="#333" 
@@ -153,16 +167,26 @@ export default function Home() {
               >
                 {quantity}
               </Typography>
+            <Stack direction="row" spacing={2}>
               <Button 
               variant='contained'
-              onClick={()=>{
+              onClick={()=>
+                addItem(name)
+              }
+              >
+              Add
+             </Button>
+              <Button 
+              variant='contained'
+              onClick={()=>
                 removeItem(name)
-              }}
+              }
               >
               Remove
              </Button>
+             </Stack>
             </Box>
-          })
+          ))
         }
         </Stack>
       </Box>

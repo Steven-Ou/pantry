@@ -56,7 +56,9 @@ export default function Home() {
     updateInventory()
   } ,[])
 
-  
+  const handleOpen = () => setOpen(true)
+  const handleClose = () => setOpen(false)
+
   return (
     <Box>
         <Typography variant={'h1'} color={'#333'} textAlign={'center'} >

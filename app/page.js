@@ -56,8 +56,8 @@ export default function Home() {
     updateInventory()
   } ,[])
 
-  const handleOpen = () => setOpen(true)
-  const handleClose = () => setOpen(false)
+  const handleOpen = () => setOpen(true) // true - opens up
+  const handleClose = () => setOpen(false) // false - closes up 
 
   return (
     <Box>

@@ -19,7 +19,7 @@ export default function Home() {
     docs.forEach((doc)=> {
       inventoryList.push({
         name: doc.id,
-        ...doc.data(),
+        ...doc.data()
       })
     })
     setInventory(inventoryList)
@@ -40,11 +40,10 @@ export default function Home() {
   
     const removeItem = async (item) =>{
       const docRef = doc(collection(firestore, 'inventory'), item)
-      const docSnap = await getDoc(docRef)
-      
+      const docSnap = await getDoc(docRef)  
       if(docSnap.exists()){
         const {quantity} = docSnap.data()
-        if (quantity ==1){
+        if (quantity ===1){
           await deleteDoc(docRef)
         }else{
           await setDoc(docRef,{quantity:quantity -1})
@@ -138,19 +137,19 @@ export default function Home() {
       width ="300px" 
       height="300px" 
       spacing={2} 
-      overflow="auto"
+      overflow={"auto"}
       >
         {
           inventory.map(({name,quantity})=>(
             <Box 
             key={name} 
-            width="100%"
+            width="800px"
             minHeight="150px"
             display="flex"
             alignItems="center"
             sx={{justifyContent:"space-between"}}
             bgcolor="#f0f0f0"
-            padding={10}
+            paddingX={10}
             >
               <Typography 
               variant='h3' 
@@ -161,9 +160,9 @@ export default function Home() {
               </Typography>
 
               <Typography 
-              variant='h3' 
-              color="#333" 
-              textAlign="center"
+              variant={'h3'} 
+              color={"#333"} 
+              textAlign={"center"}
               >
                 {quantity}
               </Typography>
